@@ -1,0 +1,38 @@
+syntax = "proto3";
+package streamerapi;
+option go_package = "github.com/bloXroute-Labs/base-streamer/streamerapi";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/api/annotations.proto";
+
+message IsHealthyRequest {
+}
+
+message IsHealthyResponse {
+  uint64 block_number = 1;
+}
+
+message GetNewBlockStreamRequest {
+}
+
+message GetNewBlockStreamResponse {
+  bytes block_header = 1;
+  bytes block_body = 2;
+}
+
+service Api {
+  rpc IsHealthy(IsHealthyRequest) returns (IsHealthyResponse) {
+    option (google.api.http) = {
+      get: "/api/is_healthy"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "General";
+    };
+  }
+  
+  rpc GetNewBlockStream(GetNewBlockStreamRequest) returns (stream GetNewBlockStreamResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Blockchain";
+    };
+  }
+}
