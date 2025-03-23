@@ -1,0 +1,2 @@
+protoc:
+	cd proto && protoc --go_out=../streamer_api --go_opt=paths=source_relative  --go-grpc_out=../streamer_api --go-grpc_opt=paths=source_relative --grpc-gateway_out=../streamer_api --grpc-gateway_opt=paths=source_relative streamer_api.proto
