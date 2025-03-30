@@ -12,10 +12,10 @@ message IsHealthyResponse {
   uint64 block_number = 1;
 }
 
-message GetNewBlockStreamRequest {
+message GetBdnBlockStreamRequest {
 }
 
-message GetNewBlockStreamResponse {
+message GetBdnBlockStreamResponse {
   bytes block_header = 1;
   bytes block_body = 2;
 }
@@ -30,7 +30,7 @@ service Api {
     };
   }
   
-  rpc GetNewBlockStream(GetNewBlockStreamRequest) returns (stream GetNewBlockStreamResponse) {
+  rpc GetBdnBlockStream(GetBdnBlockStreamRequest) returns (stream GetBdnBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "Blockchain";
     };
