@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Api_IsHealthy_FullMethodName         = "/streamerapi.Api/IsHealthy"
-	Api_GetBdnBlockStream_FullMethodName = "/streamerapi.Api/GetBdnBlockStream"
+	Api_IsHealthy_FullMethodName              = "/streamerapi.Api/IsHealthy"
+	Api_GetBdnBlockStream_FullMethodName      = "/streamerapi.Api/GetBdnBlockStream"
+	Api_GetBdnFlashBlockStream_FullMethodName = "/streamerapi.Api/GetBdnFlashBlockStream"
 )
 
 // ApiClient is the client API for Api service.
@@ -28,7 +29,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiClient interface {
 	IsHealthy(ctx context.Context, in *IsHealthyRequest, opts ...grpc.CallOption) (*IsHealthyResponse, error)
+	// Streams
 	GetBdnBlockStream(ctx context.Context, in *GetBdnBlockStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetBdnBlockStreamResponse], error)
+	GetBdnFlashBlockStream(ctx context.Context, in *GetBdnFlashBlockStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetBdnFlashBlockStreamResponse], error)
 }
 
 type apiClient struct {
@@ -68,12 +71,33 @@ func (c *apiClient) GetBdnBlockStream(ctx context.Context, in *GetBdnBlockStream
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Api_GetBdnBlockStreamClient = grpc.ServerStreamingClient[GetBdnBlockStreamResponse]
 
+func (c *apiClient) GetBdnFlashBlockStream(ctx context.Context, in *GetBdnFlashBlockStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[GetBdnFlashBlockStreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Api_ServiceDesc.Streams[1], Api_GetBdnFlashBlockStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[GetBdnFlashBlockStreamRequest, GetBdnFlashBlockStreamResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Api_GetBdnFlashBlockStreamClient = grpc.ServerStreamingClient[GetBdnFlashBlockStreamResponse]
+
 // ApiServer is the server API for Api service.
 // All implementations must embed UnimplementedApiServer
 // for forward compatibility.
 type ApiServer interface {
 	IsHealthy(context.Context, *IsHealthyRequest) (*IsHealthyResponse, error)
+	// Streams
 	GetBdnBlockStream(*GetBdnBlockStreamRequest, grpc.ServerStreamingServer[GetBdnBlockStreamResponse]) error
+	GetBdnFlashBlockStream(*GetBdnFlashBlockStreamRequest, grpc.ServerStreamingServer[GetBdnFlashBlockStreamResponse]) error
 	mustEmbedUnimplementedApiServer()
 }
 
@@ -89,6 +113,9 @@ func (UnimplementedApiServer) IsHealthy(context.Context, *IsHealthyRequest) (*Is
 }
 func (UnimplementedApiServer) GetBdnBlockStream(*GetBdnBlockStreamRequest, grpc.ServerStreamingServer[GetBdnBlockStreamResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method GetBdnBlockStream not implemented")
+}
+func (UnimplementedApiServer) GetBdnFlashBlockStream(*GetBdnFlashBlockStreamRequest, grpc.ServerStreamingServer[GetBdnFlashBlockStreamResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method GetBdnFlashBlockStream not implemented")
 }
 func (UnimplementedApiServer) mustEmbedUnimplementedApiServer() {}
 func (UnimplementedApiServer) testEmbeddedByValue()             {}
@@ -140,6 +167,17 @@ func _Api_GetBdnBlockStream_Handler(srv interface{}, stream grpc.ServerStream) e
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Api_GetBdnBlockStreamServer = grpc.ServerStreamingServer[GetBdnBlockStreamResponse]
 
+func _Api_GetBdnFlashBlockStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetBdnFlashBlockStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ApiServer).GetBdnFlashBlockStream(m, &grpc.GenericServerStream[GetBdnFlashBlockStreamRequest, GetBdnFlashBlockStreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Api_GetBdnFlashBlockStreamServer = grpc.ServerStreamingServer[GetBdnFlashBlockStreamResponse]
+
 // Api_ServiceDesc is the grpc.ServiceDesc for Api service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -156,6 +194,11 @@ var Api_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetBdnBlockStream",
 			Handler:       _Api_GetBdnBlockStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetBdnFlashBlockStream",
+			Handler:       _Api_GetBdnFlashBlockStream_Handler,
 			ServerStreams: true,
 		},
 	},

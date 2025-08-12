@@ -20,6 +20,13 @@ message GetBdnBlockStreamResponse {
   bytes block_body = 2;
 }
 
+message GetBdnFlashBlockStreamRequest {
+}
+
+message GetBdnFlashBlockStreamResponse {
+  bytes bdn_flash_block = 1;
+}
+
 service Api {
   rpc IsHealthy(IsHealthyRequest) returns (IsHealthyResponse) {
     option (google.api.http) = {
@@ -30,7 +37,14 @@ service Api {
     };
   }
   
+  // Streams
   rpc GetBdnBlockStream(GetBdnBlockStreamRequest) returns (stream GetBdnBlockStreamResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Blockchain";
+    };
+  }
+
+  rpc GetBdnFlashBlockStream(GetBdnFlashBlockStreamRequest) returns (stream GetBdnFlashBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "Blockchain";
     };
