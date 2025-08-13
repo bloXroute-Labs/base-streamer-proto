@@ -27,6 +27,79 @@ message GetBdnFlashBlockStreamResponse {
   bytes bdn_flash_block = 1;
 }
 
+message GetParsedBdnFlashBlockStreamRequest {
+}
+
+// Parsed Flash Block msgs
+message Base {
+  string parent_beacon_block_root = 1;
+  string parent_hash = 2;
+  string fee_recipient = 3;
+  string prev_randao = 4;
+  string block_number = 5;
+  string gas_limit = 6;
+  string timestamp = 7;
+  string extra_data = 8;
+  string base_fee_per_gas = 9;
+}
+
+message Diff {
+  string state_root = 1;
+  string receipts_root = 2;
+  string logs_bloom = 3;
+  string gas_used = 4;
+  string block_hash = 5;
+  repeated string transactions = 6;
+  repeated string withdrawals = 7;
+  string withdrawals_root = 8;
+}
+
+message Log {
+  string address = 1;
+  string data = 2;
+  repeated string topics = 3;
+}
+
+message Deposit {
+  string cumulativeGasUsed = 1;
+  repeated Log logs = 2;
+  string status = 3;
+  string depositNonce = 4;
+  string depositReceiptVersion = 5;
+}
+
+message Eip1559 {
+  string cumulativeGasUsed = 1;
+  repeated Log logs = 2;
+  string status = 3;
+}
+
+message Legacy {
+  string cumulativeGasUsed = 1;
+  repeated Log logs = 2;
+  string status = 3;
+}
+
+message MetaDataReceipt {
+  Deposit Deposit = 1;
+  Eip1559 Eip1559 = 2;
+  Legacy Legacy = 3;
+}
+
+message MetaData {
+  uint64 block_number = 1;
+  map<string, string> new_account_balances = 2;
+  map<string, MetaDataReceipt> receipts = 3;
+}
+
+message GetParsedBdnFlashBlockStreamResponse {
+  string payload_id = 1;
+  uint64 index = 2;
+  Base base = 3;
+  Diff diff = 4;
+  MetaData metadata = 5;
+}
+
 service Api {
   rpc IsHealthy(IsHealthyRequest) returns (IsHealthyResponse) {
     option (google.api.http) = {
@@ -45,6 +118,12 @@ service Api {
   }
 
   rpc GetBdnFlashBlockStream(GetBdnFlashBlockStreamRequest) returns (stream GetBdnFlashBlockStreamResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "Blockchain";
+    };
+  }
+
+  rpc GetParsedBdnFlashBlockStream(GetParsedBdnFlashBlockStreamRequest) returns (stream GetParsedBdnFlashBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "Blockchain";
     };
