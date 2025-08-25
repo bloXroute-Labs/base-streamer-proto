@@ -1,6 +1,6 @@
 syntax = "proto3";
 package streamerapi;
-option go_package = "github.com/bloXroute-Labs/base-streamer/streamerapi";
+option go_package = "github.com/bloXroute-Labs/base-streamer-proto/streamerapi";
 
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/api/annotations.proto";
@@ -100,6 +100,14 @@ message GetParsedBdnFlashBlockStreamResponse {
   MetaData metadata = 5;
 }
 
+message GetBdnFBTxnStateDiffStreamRequest {
+  repeated string addresses = 1; // optional: Txn mentions one of these addresses
+}
+
+message GetBdnFBTxnStateDiffStreamResponse {
+  string state_diff = 1;
+}
+
 service Api {
   rpc IsHealthy(IsHealthyRequest) returns (IsHealthyResponse) {
     option (google.api.http) = {
@@ -113,19 +121,25 @@ service Api {
   // Streams
   rpc GetBdnBlockStream(GetBdnBlockStreamRequest) returns (stream GetBdnBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Blockchain";
+      tags: "BdnBlockStream";
     };
   }
 
   rpc GetBdnFlashBlockStream(GetBdnFlashBlockStreamRequest) returns (stream GetBdnFlashBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Blockchain";
+      tags: "BdnBlockStream";
     };
   }
 
   rpc GetParsedBdnFlashBlockStream(GetParsedBdnFlashBlockStreamRequest) returns (stream GetParsedBdnFlashBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Blockchain";
+      tags: "BdnBlockStream";
+    };
+  }
+
+  rpc GetBdnFBTxnStateDiffStream(GetBdnFBTxnStateDiffStreamRequest) returns (stream GetBdnFBTxnStateDiffStreamResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "BdnTxnStream";
     };
   }
 }
