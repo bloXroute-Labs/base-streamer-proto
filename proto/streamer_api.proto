@@ -114,6 +114,16 @@ message TxnStateDiffTrace {
   map<string, AccountState> post = 2;
 }
 
+message TxnStateDiffTimes {
+    // timestamps in microseconds since UNIX epoch for latency tracking.
+    uint64 reth_before_iterating_txs_micros = 1;
+    uint64 reth_spawn_state_diff_sender_micros = 2;
+    uint64 reth_transact_duration_micros = 3;
+    uint64 reth_grpc_streaming_state_diff_micros = 4;
+    uint64 streamer_recv_time_micros = 5;
+    uint64 streamer_sent_time_micros = 6;
+}
+
 message GetBdnFBTxnStateDiffStreamResponse {
   optional uint64 block_number = 1;
   optional uint64 block_position = 2;
@@ -121,6 +131,7 @@ message GetBdnFBTxnStateDiffStreamResponse {
   optional string tx_hash = 4;
   TxnStateDiffTrace trace = 5;
   optional bool is_success = 6;
+  TxnStateDiffTimes internal_times = 7;
 }
 
 service Api {
