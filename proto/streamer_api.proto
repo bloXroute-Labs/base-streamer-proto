@@ -116,12 +116,13 @@ message TxnStateDiffTrace {
 
 message TxnStateDiffTimes {
     // timestamps in microseconds since UNIX epoch for latency tracking.
-    uint64 reth_before_iterating_txs_micros = 1;
-    uint64 reth_spawn_state_diff_sender_micros = 2;
-    uint64 reth_grpc_streaming_state_diff_micros = 3;
-    uint64 reth_transact_micros_duration = 4; // Note: duration not timestamp
-    uint64 streamer_recv_time_micros = 5;
-    uint64 streamer_sent_time_micros = 6;
+    uint64 reth_fb_recv_ts_micros = 1;
+    uint64 reth_before_iterating_txs_ts_micros = 2;
+    uint64 reth_spawn_state_diff_sender_ts_micros = 3;
+    uint64 reth_grpc_streaming_state_diff_ts_micros = 4;
+    uint64 reth_transact_duration_micros = 5; // Note: duration not timestamp
+    uint64 streamer_recv_ts_micros = 6;
+    uint64 streamer_sent_ts_micros = 7;
 }
 
 message GetBdnFBTxnStateDiffStreamResponse {
