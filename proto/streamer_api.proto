@@ -8,17 +8,7 @@ import "google/api/annotations.proto";
 message IsHealthyRequest {
 }
 
-message IsHealthyResponse {
-  uint64 block_number = 1;
-}
-
-message GetBdnBlockStreamRequest {
-}
-
-message GetBdnBlockStreamResponse {
-  bytes block_header = 1;
-  bytes block_body = 2;
-}
+message IsHealthyResponse {}
 
 message GetBdnFlashBlockStreamRequest {
 }
@@ -146,12 +136,6 @@ service Api {
   }
   
   // Streams
-  rpc GetBdnBlockStream(GetBdnBlockStreamRequest) returns (stream GetBdnBlockStreamResponse) {
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "BdnBlockStream";
-    };
-  }
-
   rpc GetBdnFlashBlockStream(GetBdnFlashBlockStreamRequest) returns (stream GetBdnFlashBlockStreamResponse) {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "BdnBlockStream";
