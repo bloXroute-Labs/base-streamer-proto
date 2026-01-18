@@ -1,6 +1,6 @@
 module github.com/bloXroute-Labs/base-streamer-proto
 
-go 1.24.1
+go 1.25.1
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3
