@@ -74,8 +74,15 @@ message GetParsedBdnFlashBlockStreamResponse {
   MetaData metadata = 5;
 }
 
+message TxLog {
+  string address = 1;
+  repeated string topics = 2;
+  string data = 3;
+}
+
 message GetBdnFBTxnStateDiffStreamRequest {
   repeated string addresses = 1; // optional: Txn mentions one of these addresses
+  bool get_logs = 2;             // if true, logs emitted by the transaction are included
 }
 
 message AccountState {
@@ -95,6 +102,7 @@ message GetBdnFBTxnStateDiffStreamResponse {
   optional string tx_hash = 4;
   TxnStateDiffTrace trace = 5;
   optional bool is_success = 6;
+  repeated TxLog logs = 7;
 }
 
 service Api {
