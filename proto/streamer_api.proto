@@ -82,7 +82,7 @@ message TxLog {
 
 message GetBdnFBTxnStateDiffStreamRequest {
   repeated string addresses = 1; // optional: Txn mentions one of these addresses
-  bool get_logs = 2;             // if true, logs emitted by the transaction are included
+  bool include_logs = 2;         // if true, logs emitted by the transaction are included
 }
 
 message AccountState {
