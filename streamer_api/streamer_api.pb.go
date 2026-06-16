@@ -428,162 +428,16 @@ func (x *Diff) GetBlobGasUsed() string {
 	return ""
 }
 
-type Log struct {
+type MetaData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Data          string                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	Topics        []string               `protobuf:"bytes,3,rep,name=topics,proto3" json:"topics,omitempty"`
+	BlockNumber   uint64                 `protobuf:"varint,1,opt,name=block_number,json=blockNumber,proto3" json:"block_number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Log) Reset() {
-	*x = Log{}
-	mi := &file_streamer_api_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Log) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Log) ProtoMessage() {}
-
-func (x *Log) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Log.ProtoReflect.Descriptor instead.
-func (*Log) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Log) GetAddress() string {
-	if x != nil {
-		return x.Address
-	}
-	return ""
-}
-
-func (x *Log) GetData() string {
-	if x != nil {
-		return x.Data
-	}
-	return ""
-}
-
-func (x *Log) GetTopics() []string {
-	if x != nil {
-		return x.Topics
-	}
-	return nil
-}
-
-type MetaDataReceipt struct {
-	state                 protoimpl.MessageState `protogen:"open.v1"`
-	CumulativeGasUsed     string                 `protobuf:"bytes,1,opt,name=cumulativeGasUsed,proto3" json:"cumulativeGasUsed,omitempty"`
-	Logs                  []*Log                 `protobuf:"bytes,2,rep,name=logs,proto3" json:"logs,omitempty"`
-	Status                string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
-	Type                  string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
-	DepositNonce          string                 `protobuf:"bytes,5,opt,name=depositNonce,proto3" json:"depositNonce,omitempty"`
-	DepositReceiptVersion string                 `protobuf:"bytes,6,opt,name=depositReceiptVersion,proto3" json:"depositReceiptVersion,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
-}
-
-func (x *MetaDataReceipt) Reset() {
-	*x = MetaDataReceipt{}
-	mi := &file_streamer_api_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MetaDataReceipt) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MetaDataReceipt) ProtoMessage() {}
-
-func (x *MetaDataReceipt) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MetaDataReceipt.ProtoReflect.Descriptor instead.
-func (*MetaDataReceipt) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *MetaDataReceipt) GetCumulativeGasUsed() string {
-	if x != nil {
-		return x.CumulativeGasUsed
-	}
-	return ""
-}
-
-func (x *MetaDataReceipt) GetLogs() []*Log {
-	if x != nil {
-		return x.Logs
-	}
-	return nil
-}
-
-func (x *MetaDataReceipt) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *MetaDataReceipt) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-func (x *MetaDataReceipt) GetDepositNonce() string {
-	if x != nil {
-		return x.DepositNonce
-	}
-	return ""
-}
-
-func (x *MetaDataReceipt) GetDepositReceiptVersion() string {
-	if x != nil {
-		return x.DepositReceiptVersion
-	}
-	return ""
-}
-
-type MetaData struct {
-	state              protoimpl.MessageState      `protogen:"open.v1"`
-	BlockNumber        uint64                      `protobuf:"varint,1,opt,name=block_number,json=blockNumber,proto3" json:"block_number,omitempty"`
-	NewAccountBalances map[string]string           `protobuf:"bytes,2,rep,name=new_account_balances,json=newAccountBalances,proto3" json:"new_account_balances,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Receipts           map[string]*MetaDataReceipt `protobuf:"bytes,3,rep,name=receipts,proto3" json:"receipts,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
-}
-
 func (x *MetaData) Reset() {
 	*x = MetaData{}
-	mi := &file_streamer_api_proto_msgTypes[9]
+	mi := &file_streamer_api_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -595,7 +449,7 @@ func (x *MetaData) String() string {
 func (*MetaData) ProtoMessage() {}
 
 func (x *MetaData) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[9]
+	mi := &file_streamer_api_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -608,7 +462,7 @@ func (x *MetaData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MetaData.ProtoReflect.Descriptor instead.
 func (*MetaData) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{9}
+	return file_streamer_api_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *MetaData) GetBlockNumber() uint64 {
@@ -616,20 +470,6 @@ func (x *MetaData) GetBlockNumber() uint64 {
 		return x.BlockNumber
 	}
 	return 0
-}
-
-func (x *MetaData) GetNewAccountBalances() map[string]string {
-	if x != nil {
-		return x.NewAccountBalances
-	}
-	return nil
-}
-
-func (x *MetaData) GetReceipts() map[string]*MetaDataReceipt {
-	if x != nil {
-		return x.Receipts
-	}
-	return nil
 }
 
 type GetParsedBdnFlashBlockStreamResponse struct {
@@ -645,7 +485,7 @@ type GetParsedBdnFlashBlockStreamResponse struct {
 
 func (x *GetParsedBdnFlashBlockStreamResponse) Reset() {
 	*x = GetParsedBdnFlashBlockStreamResponse{}
-	mi := &file_streamer_api_proto_msgTypes[10]
+	mi := &file_streamer_api_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -657,7 +497,7 @@ func (x *GetParsedBdnFlashBlockStreamResponse) String() string {
 func (*GetParsedBdnFlashBlockStreamResponse) ProtoMessage() {}
 
 func (x *GetParsedBdnFlashBlockStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[10]
+	mi := &file_streamer_api_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -670,7 +510,7 @@ func (x *GetParsedBdnFlashBlockStreamResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use GetParsedBdnFlashBlockStreamResponse.ProtoReflect.Descriptor instead.
 func (*GetParsedBdnFlashBlockStreamResponse) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{10}
+	return file_streamer_api_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetParsedBdnFlashBlockStreamResponse) GetPayloadId() string {
@@ -719,7 +559,7 @@ type TxLog struct {
 
 func (x *TxLog) Reset() {
 	*x = TxLog{}
-	mi := &file_streamer_api_proto_msgTypes[11]
+	mi := &file_streamer_api_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -731,7 +571,7 @@ func (x *TxLog) String() string {
 func (*TxLog) ProtoMessage() {}
 
 func (x *TxLog) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[11]
+	mi := &file_streamer_api_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -744,7 +584,7 @@ func (x *TxLog) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxLog.ProtoReflect.Descriptor instead.
 func (*TxLog) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{11}
+	return file_streamer_api_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TxLog) GetAddress() string {
@@ -778,7 +618,7 @@ type GetBdnFBTxnStateDiffStreamRequest struct {
 
 func (x *GetBdnFBTxnStateDiffStreamRequest) Reset() {
 	*x = GetBdnFBTxnStateDiffStreamRequest{}
-	mi := &file_streamer_api_proto_msgTypes[12]
+	mi := &file_streamer_api_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -790,7 +630,7 @@ func (x *GetBdnFBTxnStateDiffStreamRequest) String() string {
 func (*GetBdnFBTxnStateDiffStreamRequest) ProtoMessage() {}
 
 func (x *GetBdnFBTxnStateDiffStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[12]
+	mi := &file_streamer_api_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -803,7 +643,7 @@ func (x *GetBdnFBTxnStateDiffStreamRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetBdnFBTxnStateDiffStreamRequest.ProtoReflect.Descriptor instead.
 func (*GetBdnFBTxnStateDiffStreamRequest) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{12}
+	return file_streamer_api_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetBdnFBTxnStateDiffStreamRequest) GetAddresses() []string {
@@ -830,7 +670,7 @@ type AccountState struct {
 
 func (x *AccountState) Reset() {
 	*x = AccountState{}
-	mi := &file_streamer_api_proto_msgTypes[13]
+	mi := &file_streamer_api_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -842,7 +682,7 @@ func (x *AccountState) String() string {
 func (*AccountState) ProtoMessage() {}
 
 func (x *AccountState) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[13]
+	mi := &file_streamer_api_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -855,7 +695,7 @@ func (x *AccountState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccountState.ProtoReflect.Descriptor instead.
 func (*AccountState) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{13}
+	return file_streamer_api_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *AccountState) GetBalance() string {
@@ -882,7 +722,7 @@ type TxnStateDiffTrace struct {
 
 func (x *TxnStateDiffTrace) Reset() {
 	*x = TxnStateDiffTrace{}
-	mi := &file_streamer_api_proto_msgTypes[14]
+	mi := &file_streamer_api_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -894,7 +734,7 @@ func (x *TxnStateDiffTrace) String() string {
 func (*TxnStateDiffTrace) ProtoMessage() {}
 
 func (x *TxnStateDiffTrace) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[14]
+	mi := &file_streamer_api_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -907,7 +747,7 @@ func (x *TxnStateDiffTrace) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TxnStateDiffTrace.ProtoReflect.Descriptor instead.
 func (*TxnStateDiffTrace) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{14}
+	return file_streamer_api_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *TxnStateDiffTrace) GetPre() map[string]*AccountState {
@@ -939,7 +779,7 @@ type GetBdnFBTxnStateDiffStreamResponse struct {
 
 func (x *GetBdnFBTxnStateDiffStreamResponse) Reset() {
 	*x = GetBdnFBTxnStateDiffStreamResponse{}
-	mi := &file_streamer_api_proto_msgTypes[15]
+	mi := &file_streamer_api_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -951,7 +791,7 @@ func (x *GetBdnFBTxnStateDiffStreamResponse) String() string {
 func (*GetBdnFBTxnStateDiffStreamResponse) ProtoMessage() {}
 
 func (x *GetBdnFBTxnStateDiffStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_streamer_api_proto_msgTypes[15]
+	mi := &file_streamer_api_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -964,7 +804,7 @@ func (x *GetBdnFBTxnStateDiffStreamResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetBdnFBTxnStateDiffStreamResponse.ProtoReflect.Descriptor instead.
 func (*GetBdnFBTxnStateDiffStreamResponse) Descriptor() ([]byte, []int) {
-	return file_streamer_api_proto_rawDescGZIP(), []int{15}
+	return file_streamer_api_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetBdnFBTxnStateDiffStreamResponse) GetBlockNumber() uint64 {
@@ -1078,50 +918,10 @@ var file_streamer_api_proto_rawDesc = string([]byte{
 	0x0f, 0x77, 0x69, 0x74, 0x68, 0x64, 0x72, 0x61, 0x77, 0x61, 0x6c, 0x73, 0x52, 0x6f, 0x6f, 0x74,
 	0x12, 0x22, 0x0a, 0x0d, 0x62, 0x6c, 0x6f, 0x62, 0x5f, 0x67, 0x61, 0x73, 0x5f, 0x75, 0x73, 0x65,
 	0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x62, 0x6c, 0x6f, 0x62, 0x47, 0x61, 0x73,
-	0x55, 0x73, 0x65, 0x64, 0x22, 0x4b, 0x0a, 0x03, 0x4c, 0x6f, 0x67, 0x12, 0x18, 0x0a, 0x07, 0x61,
-	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64,
-	0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x12, 0x16, 0x0a, 0x06, 0x74, 0x6f, 0x70,
-	0x69, 0x63, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x74, 0x6f, 0x70, 0x69, 0x63,
-	0x73, 0x22, 0xeb, 0x01, 0x0a, 0x0f, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65,
-	0x63, 0x65, 0x69, 0x70, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x63, 0x75, 0x6d, 0x75, 0x6c, 0x61, 0x74,
-	0x69, 0x76, 0x65, 0x47, 0x61, 0x73, 0x55, 0x73, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x11, 0x63, 0x75, 0x6d, 0x75, 0x6c, 0x61, 0x74, 0x69, 0x76, 0x65, 0x47, 0x61, 0x73, 0x55,
-	0x73, 0x65, 0x64, 0x12, 0x24, 0x0a, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x10, 0x2e, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x70, 0x69, 0x2e,
-	0x4c, 0x6f, 0x67, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61,
-	0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x64, 0x65, 0x70, 0x6f, 0x73, 0x69, 0x74,
-	0x4e, 0x6f, 0x6e, 0x63, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x64, 0x65, 0x70,
-	0x6f, 0x73, 0x69, 0x74, 0x4e, 0x6f, 0x6e, 0x63, 0x65, 0x12, 0x34, 0x0a, 0x15, 0x64, 0x65, 0x70,
-	0x6f, 0x73, 0x69, 0x74, 0x52, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74, 0x56, 0x65, 0x72, 0x73, 0x69,
-	0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x15, 0x64, 0x65, 0x70, 0x6f, 0x73, 0x69,
-	0x74, 0x52, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22,
-	0xf1, 0x02, 0x0a, 0x08, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x12, 0x21, 0x0a, 0x0c,
-	0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x04, 0x52, 0x0b, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12,
-	0x5f, 0x0a, 0x14, 0x6e, 0x65, 0x77, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x62,
-	0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2d, 0x2e,
-	0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x70, 0x69, 0x2e, 0x4d, 0x65, 0x74, 0x61,
-	0x44, 0x61, 0x74, 0x61, 0x2e, 0x4e, 0x65, 0x77, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42,
-	0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x12, 0x6e, 0x65,
-	0x77, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x73,
-	0x12, 0x3f, 0x0a, 0x08, 0x72, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74, 0x73, 0x18, 0x03, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x23, 0x2e, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x70, 0x69,
-	0x2e, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x2e, 0x52, 0x65, 0x63, 0x65, 0x69, 0x70,
-	0x74, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x08, 0x72, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74,
-	0x73, 0x1a, 0x45, 0x0a, 0x17, 0x4e, 0x65, 0x77, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42,
-	0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03,
-	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14,
-	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x1a, 0x59, 0x0a, 0x0d, 0x52, 0x65, 0x63, 0x65,
-	0x69, 0x70, 0x74, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x32, 0x0a, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x73, 0x74, 0x72,
-	0x65, 0x61, 0x6d, 0x65, 0x72, 0x61, 0x70, 0x69, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74,
-	0x61, 0x52, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a,
-	0x02, 0x38, 0x01, 0x22, 0xdc, 0x01, 0x0a, 0x24, 0x47, 0x65, 0x74, 0x50, 0x61, 0x72, 0x73, 0x65,
+	0x55, 0x73, 0x65, 0x64, 0x22, 0x2d, 0x0a, 0x08, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61,
+	0x12, 0x21, 0x0a, 0x0c, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x22, 0xdc, 0x01, 0x0a, 0x24, 0x47, 0x65, 0x74, 0x50, 0x61, 0x72, 0x73, 0x65,
 	0x64, 0x42, 0x64, 0x6e, 0x46, 0x6c, 0x61, 0x73, 0x68, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x53, 0x74,
 	0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a,
 	0x70, 0x61, 0x79, 0x6c, 0x6f, 0x61, 0x64, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
@@ -1258,58 +1058,50 @@ func file_streamer_api_proto_rawDescGZIP() []byte {
 	return file_streamer_api_proto_rawDescData
 }
 
-var file_streamer_api_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_streamer_api_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_streamer_api_proto_goTypes = []any{
 	(*IsHealthyRequest)(nil),                    // 0: streamerapi.IsHealthyRequest
 	(*IsHealthyResponse)(nil),                   // 1: streamerapi.IsHealthyResponse
 	(*GetBdnFlashBlockStreamRequest)(nil),       // 2: streamerapi.GetBdnFlashBlockStreamRequest
 	(*GetBdnFlashBlockStreamResponse)(nil),      // 3: streamerapi.GetBdnFlashBlockStreamResponse
 	(*GetParsedBdnFlashBlockStreamRequest)(nil), // 4: streamerapi.GetParsedBdnFlashBlockStreamRequest
-	(*Base)(nil),            // 5: streamerapi.Base
-	(*Diff)(nil),            // 6: streamerapi.Diff
-	(*Log)(nil),             // 7: streamerapi.Log
-	(*MetaDataReceipt)(nil), // 8: streamerapi.MetaDataReceipt
-	(*MetaData)(nil),        // 9: streamerapi.MetaData
-	(*GetParsedBdnFlashBlockStreamResponse)(nil), // 10: streamerapi.GetParsedBdnFlashBlockStreamResponse
-	(*TxLog)(nil), // 11: streamerapi.TxLog
-	(*GetBdnFBTxnStateDiffStreamRequest)(nil),  // 12: streamerapi.GetBdnFBTxnStateDiffStreamRequest
-	(*AccountState)(nil),                       // 13: streamerapi.AccountState
-	(*TxnStateDiffTrace)(nil),                  // 14: streamerapi.TxnStateDiffTrace
-	(*GetBdnFBTxnStateDiffStreamResponse)(nil), // 15: streamerapi.GetBdnFBTxnStateDiffStreamResponse
-	nil, // 16: streamerapi.MetaData.NewAccountBalancesEntry
-	nil, // 17: streamerapi.MetaData.ReceiptsEntry
-	nil, // 18: streamerapi.AccountState.StorageEntry
-	nil, // 19: streamerapi.TxnStateDiffTrace.PreEntry
-	nil, // 20: streamerapi.TxnStateDiffTrace.PostEntry
+	(*Base)(nil),     // 5: streamerapi.Base
+	(*Diff)(nil),     // 6: streamerapi.Diff
+	(*MetaData)(nil), // 7: streamerapi.MetaData
+	(*GetParsedBdnFlashBlockStreamResponse)(nil), // 8: streamerapi.GetParsedBdnFlashBlockStreamResponse
+	(*TxLog)(nil), // 9: streamerapi.TxLog
+	(*GetBdnFBTxnStateDiffStreamRequest)(nil),  // 10: streamerapi.GetBdnFBTxnStateDiffStreamRequest
+	(*AccountState)(nil),                       // 11: streamerapi.AccountState
+	(*TxnStateDiffTrace)(nil),                  // 12: streamerapi.TxnStateDiffTrace
+	(*GetBdnFBTxnStateDiffStreamResponse)(nil), // 13: streamerapi.GetBdnFBTxnStateDiffStreamResponse
+	nil, // 14: streamerapi.AccountState.StorageEntry
+	nil, // 15: streamerapi.TxnStateDiffTrace.PreEntry
+	nil, // 16: streamerapi.TxnStateDiffTrace.PostEntry
 }
 var file_streamer_api_proto_depIdxs = []int32{
-	7,  // 0: streamerapi.MetaDataReceipt.logs:type_name -> streamerapi.Log
-	16, // 1: streamerapi.MetaData.new_account_balances:type_name -> streamerapi.MetaData.NewAccountBalancesEntry
-	17, // 2: streamerapi.MetaData.receipts:type_name -> streamerapi.MetaData.ReceiptsEntry
-	5,  // 3: streamerapi.GetParsedBdnFlashBlockStreamResponse.base:type_name -> streamerapi.Base
-	6,  // 4: streamerapi.GetParsedBdnFlashBlockStreamResponse.diff:type_name -> streamerapi.Diff
-	9,  // 5: streamerapi.GetParsedBdnFlashBlockStreamResponse.metadata:type_name -> streamerapi.MetaData
-	18, // 6: streamerapi.AccountState.storage:type_name -> streamerapi.AccountState.StorageEntry
-	19, // 7: streamerapi.TxnStateDiffTrace.pre:type_name -> streamerapi.TxnStateDiffTrace.PreEntry
-	20, // 8: streamerapi.TxnStateDiffTrace.post:type_name -> streamerapi.TxnStateDiffTrace.PostEntry
-	14, // 9: streamerapi.GetBdnFBTxnStateDiffStreamResponse.trace:type_name -> streamerapi.TxnStateDiffTrace
-	11, // 10: streamerapi.GetBdnFBTxnStateDiffStreamResponse.logs:type_name -> streamerapi.TxLog
-	8,  // 11: streamerapi.MetaData.ReceiptsEntry.value:type_name -> streamerapi.MetaDataReceipt
-	13, // 12: streamerapi.TxnStateDiffTrace.PreEntry.value:type_name -> streamerapi.AccountState
-	13, // 13: streamerapi.TxnStateDiffTrace.PostEntry.value:type_name -> streamerapi.AccountState
-	0,  // 14: streamerapi.Api.IsHealthy:input_type -> streamerapi.IsHealthyRequest
-	2,  // 15: streamerapi.Api.GetBdnFlashBlockStream:input_type -> streamerapi.GetBdnFlashBlockStreamRequest
-	4,  // 16: streamerapi.Api.GetParsedBdnFlashBlockStream:input_type -> streamerapi.GetParsedBdnFlashBlockStreamRequest
-	12, // 17: streamerapi.Api.GetBdnFBTxnStateDiffStream:input_type -> streamerapi.GetBdnFBTxnStateDiffStreamRequest
-	1,  // 18: streamerapi.Api.IsHealthy:output_type -> streamerapi.IsHealthyResponse
-	3,  // 19: streamerapi.Api.GetBdnFlashBlockStream:output_type -> streamerapi.GetBdnFlashBlockStreamResponse
-	10, // 20: streamerapi.Api.GetParsedBdnFlashBlockStream:output_type -> streamerapi.GetParsedBdnFlashBlockStreamResponse
-	15, // 21: streamerapi.Api.GetBdnFBTxnStateDiffStream:output_type -> streamerapi.GetBdnFBTxnStateDiffStreamResponse
-	18, // [18:22] is the sub-list for method output_type
-	14, // [14:18] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	5,  // 0: streamerapi.GetParsedBdnFlashBlockStreamResponse.base:type_name -> streamerapi.Base
+	6,  // 1: streamerapi.GetParsedBdnFlashBlockStreamResponse.diff:type_name -> streamerapi.Diff
+	7,  // 2: streamerapi.GetParsedBdnFlashBlockStreamResponse.metadata:type_name -> streamerapi.MetaData
+	14, // 3: streamerapi.AccountState.storage:type_name -> streamerapi.AccountState.StorageEntry
+	15, // 4: streamerapi.TxnStateDiffTrace.pre:type_name -> streamerapi.TxnStateDiffTrace.PreEntry
+	16, // 5: streamerapi.TxnStateDiffTrace.post:type_name -> streamerapi.TxnStateDiffTrace.PostEntry
+	12, // 6: streamerapi.GetBdnFBTxnStateDiffStreamResponse.trace:type_name -> streamerapi.TxnStateDiffTrace
+	9,  // 7: streamerapi.GetBdnFBTxnStateDiffStreamResponse.logs:type_name -> streamerapi.TxLog
+	11, // 8: streamerapi.TxnStateDiffTrace.PreEntry.value:type_name -> streamerapi.AccountState
+	11, // 9: streamerapi.TxnStateDiffTrace.PostEntry.value:type_name -> streamerapi.AccountState
+	0,  // 10: streamerapi.Api.IsHealthy:input_type -> streamerapi.IsHealthyRequest
+	2,  // 11: streamerapi.Api.GetBdnFlashBlockStream:input_type -> streamerapi.GetBdnFlashBlockStreamRequest
+	4,  // 12: streamerapi.Api.GetParsedBdnFlashBlockStream:input_type -> streamerapi.GetParsedBdnFlashBlockStreamRequest
+	10, // 13: streamerapi.Api.GetBdnFBTxnStateDiffStream:input_type -> streamerapi.GetBdnFBTxnStateDiffStreamRequest
+	1,  // 14: streamerapi.Api.IsHealthy:output_type -> streamerapi.IsHealthyResponse
+	3,  // 15: streamerapi.Api.GetBdnFlashBlockStream:output_type -> streamerapi.GetBdnFlashBlockStreamResponse
+	8,  // 16: streamerapi.Api.GetParsedBdnFlashBlockStream:output_type -> streamerapi.GetParsedBdnFlashBlockStreamResponse
+	13, // 17: streamerapi.Api.GetBdnFBTxnStateDiffStream:output_type -> streamerapi.GetBdnFBTxnStateDiffStreamResponse
+	14, // [14:18] is the sub-list for method output_type
+	10, // [10:14] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_streamer_api_proto_init() }
@@ -1317,15 +1109,15 @@ func file_streamer_api_proto_init() {
 	if File_streamer_api_proto != nil {
 		return
 	}
+	file_streamer_api_proto_msgTypes[11].OneofWrappers = []any{}
 	file_streamer_api_proto_msgTypes[13].OneofWrappers = []any{}
-	file_streamer_api_proto_msgTypes[15].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_streamer_api_proto_rawDesc), len(file_streamer_api_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
